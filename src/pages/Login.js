@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Redirect } from 'react-router-dom';
-import Loading from './loading';
+import Loading from './Loading';
 import { createUser } from '../services/userAPI';
 
 class Login extends Component {
@@ -73,7 +73,7 @@ class Login extends Component {
           <button
             data-testid="login-submit-button"
             name="entrar"
-            type="button"
+            type="submit"
             disabled={ isSaveBtnDisable }
             onClick={ this.handleSave }
           >
