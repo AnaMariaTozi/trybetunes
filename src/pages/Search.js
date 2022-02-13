@@ -10,7 +10,6 @@ export default class Search extends Component {
 
     this.state = {
       searchInput: '',
-      btnDisable: true,
       loading: false,
       foundAlbum: '',
       albuns: [],
@@ -75,19 +74,20 @@ render() {
       { (searchSucceed) && `Resultado de álbuns de: ${foundAlbum}`}
       {
         (albuns.length > 0)
-          ? (<section>
-            { albuns.map((album) => (
-              <CardAlbuns
-                key={ album.artistName }
-                artistName={ album.artistName }
-                collectionName={ album.collectionName }
-                collectionId={ album.collectionId }
-                collectionPrice={ album.collectionPrice }
-                artworkUrl100={ album.artworkUrl100 }
-                trackCount={ album.trackCount }
-              />
-            ))}
-        </section>
+          ? (
+            <section>
+              { albuns.map((album) => (
+                <CardAlbuns
+                  key={ album.artistName }
+                  artistName={ album.artistName }
+                  collectionName={ album.collectionName }
+                  collectionId={ album.collectionId }
+                  collectionPrice={ album.collectionPrice }
+                  artworkUrl100={ album.artworkUrl100 }
+                  trackCount={ album.trackCount }
+                />
+              ))}
+            </section>
           ) : <h2>Nenhum álbum foi encontrado</h2>
       }
     </div>
