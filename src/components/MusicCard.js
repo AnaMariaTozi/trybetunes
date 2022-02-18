@@ -11,7 +11,7 @@ class MusicCard extends Component {
       onClick,
       onChecked,
     } = this.props;
-    
+
     return (
       <div>
         <label htmlFor={ trackId }>
