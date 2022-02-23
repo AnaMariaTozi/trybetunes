@@ -39,7 +39,7 @@ class MusicCard extends Component {
 
 MusicCard.propTypes = {
   onClick: PropTypes.func.isRequired,
-  onChecked: PropTypes.func.isRequired,
+  onChecked: PropTypes.bool.isRequired,
   trackName: PropTypes.string.isRequired,
   previewUrl: PropTypes.string.isRequired,
   trackId: PropTypes.number.isRequired,
