@@ -3,7 +3,7 @@ import React from 'react';
 import Header from '../components/Header';
 import getMusics from '../services/musicsAPI';
 import MusicCard from '../components/MusicCard';
-import { addSong, getFavoriteSongs } from '../services/favoriteSongsAPI';
+import { addSong, getFavoriteSongs, removeSong } from '../services/favoriteSongsAPI';
 import Loading from '../components/Loading';
 
 class Album extends React.Component {
@@ -34,13 +34,24 @@ class Album extends React.Component {
   }
 
   async handleFavoriteSong(trackId) {
-    const { musicList } = this.state;
-    const onMusic = musicList.find((music) => music.trackId === trackId);
-    this.setState({ loading: true });
-    await addSong(onMusic);
-    this.setState((prevState) => ({
-      loading: false,
-      favoriteSongs: [...prevState.favoriteSongs, onMusic] }));
+    const { musicList, favoriteSongs } = this.state;
+    const updateFav = favoriteSongs.find((music) => music.trackId === trackId);
+    if (updateFav) {
+      this.setState({ loading: true });
+      await removeSong(updateFav);
+      this.setState((prevState) => ({
+        favoriteSongs: prevState.favoriteSongs
+          .filter((music) => music.trackId !== trackId),
+        loading: false,
+      }));
+    } else {
+      const musicFav = musicList.find((music) => music.trackId === trackId);
+      this.setState({ loading: true });
+      await addSong(musicFav);
+      this.setState((prevState) => ({
+        loading: false,
+        favoriteSongs: [...prevState.favoriteSongs, musicFav] }));
+    }
   }
 
   render() {
